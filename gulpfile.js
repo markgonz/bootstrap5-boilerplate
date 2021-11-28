@@ -25,7 +25,7 @@ function html() {
         .pipe(gulpIf(isProd, htmlmin({
             collapseWhitespace: true
         })))
-        .pipe(gulp.dest('docs'));
+        .pipe(gulp.dest('../release'));
 }
 
 function css() {
@@ -36,7 +36,7 @@ function css() {
         }).on('error', sass.logError))
         .pipe(gulpIf(!isProd, sourcemaps.write()))
         .pipe(gulpIf(isProd, cssmin()))
-        .pipe(gulp.dest('docs/css/'));
+        .pipe(gulp.dest('../release/css/'));
 }
 
 function js() {
@@ -46,19 +46,19 @@ function js() {
         }))
         .pipe(concat('all.js'))
         .pipe(gulpIf(isProd, uglify()))
-        .pipe(gulp.dest('docs/js'));
+        .pipe(gulp.dest('../release/js'));
 }
 
 function img() {
     return gulp.src('src/img/*')
         .pipe(gulpIf(isProd, imagemin()))
-        .pipe(gulp.dest('docs/img/'));
+        .pipe(gulp.dest('../release/img/'));
 }
 
 function serve() {
     browserSync.init({
         open: true,
-        server: './docs'
+        server: '../release'
     });
 }
 
@@ -78,7 +78,7 @@ function watchFiles() {
 }
 
 function del() {
-    return gulp.src('docs/*', {read: false})
+    return gulp.src('../release/*', {read: false})
         .pipe(clean());
 }
 
