@@ -3,7 +3,7 @@ $theme-colors: (
     "dark": #000000
 );
 
-@import "node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
 body {
     padding-top:56px;
